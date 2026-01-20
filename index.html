@@ -1,52 +1,259 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hoja de Vida — William Pardo</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William Pardo Orrego | CV Profesional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --sidebar-bg: #0f172a;
+            --accent: #0ea5e9;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #1e293b; /* Color de fondo para visualización */
+            color: #f8fafc;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Contenedor tamaño A4 estándar */
+        .cv-document {
+            width: 210mm;
+            height: 297mm;
+            margin: 20px auto;
+            background: var(--bg-dark);
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .sidebar {
+            width: 32%;
+            background: var(--sidebar-bg);
+            padding: 40px 24px;
+            border-right: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-body {
+            width: 68%;
+            padding: 45px 40px;
+        }
+
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
+
+        .section-header {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-header::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--accent), transparent);
+        }
+
+        .skill-tag {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 9px;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        .experience-item {
+            border-left: 2px solid var(--accent);
+            padding-left: 15px;
+            margin-bottom: 18px;
+        }
+
+        /* Optimizaciones para impresión/PDF */
+        @media print {
+            body { 
+                background: none; 
+                padding: 0; 
+            }
+            .cv-document { 
+                margin: 0; 
+                box-shadow: none; 
+                width: 210mm;
+                height: 297mm;
+                background: var(--bg-dark) !important;
+            }
+            .sidebar { background: var(--sidebar-bg) !important; }
+        }
+    </style>
 </head>
 <body>
-  <div class="page">
-    <header class="hero">
-      <h1>William <span class="accent">Pardo</span></h1>
-      <h2>Licenciado en Diseño Tecnológico</h2>
-      <p class="contact">
-        Tel: 302 252 3961 · <a href="mailto:wpardoorrego@gmail.com">wpardoorrego@gmail.com</a> · Bogotá, Colombia
-      </p>
-    </header>
 
-    <main class="container">
-      <section class="profile card">
-        <h3>Perfil Profesional</h3>
-        <p>Licenciado en Diseño Tecnológico enfocado en transformar ambientes de aprendizaje mediante IA, IoT y fabricación digital. Experiencia en simulación, prototipado y diseño inclusivo.</p>
-      </section>
+    <div class="cv-document">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="mb-10">
+                <h2 class="section-header">Contacto</h2>
+                <div class="space-y-3 text-[10px] text-slate-400">
+                    <p class="font-medium">Bogotá, Colombia</p>
+                    <p>302 252 3961</p>
+                    <p class="text-sky-400 font-semibold">wpardoorrego@gmail.com</p>
+                </div>
+            </div>
 
-      <section class="experience card">
-        <h3>Experiencia</h3>
-        <article>
-          <h4>Docente de Tecnología e Informática</h4>
-          <p class="meta">Colegio Calasanz · IPN — Periodo</p>
-          <ul>
-            <li>Lideré laboratorios de creatividad (3D, robótica).</li>
-            <li>Implementé protocolos de seguridad en taller.</li>
-          </ul>
-        </article>
-      </section>
+            <div class="mb-10">
+                <h2 class="section-header">Stack Tecnológico</h2>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-[9px] text-slate-500 font-bold mb-2 uppercase">Software</h3>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="skill-tag">SolidWorks</span>
+                            <span class="skill-tag">Unity</span>
+                            <span class="skill-tag">AutoCAD</span>
+                            <span class="skill-tag">Rhinoceros</span>
+                            <span class="skill-tag">Blender</span>
+                            <span class="skill-tag">Suite Adobe</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-[9px] text-slate-500 font-bold mb-2 uppercase">Programación e IA</h3>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="skill-tag text-sky-300">Python (IA/Datos)</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">IoT Management</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-[9px] text-slate-500 font-bold mb-2 uppercase">Hardware</h3>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="skill-tag">ESP32</span>
+                            <span class="skill-tag">Raspberry Pi</span>
+                            <span class="skill-tag text-sky-300">Protocolos 5G</span>
+                            <span class="skill-tag">Herkulex DRS-0101</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-      <section class="skills card">
-        <h3>Habilidades</h3>
-        <ul>
-          <li>SolidWorks, AutoCAD, Rhinoceros</li>
-          <li>Unity 3D, Blender</li>
-          <li>Python (IA), ESP32, Arduino</li>
-        </ul>
-      </section>
-    </main>
+            <div class="mb-10">
+                <h2 class="section-header">Idiomas</h2>
+                <div class="flex justify-between items-center text-[10px] mb-1">
+                    <span class="font-bold text-slate-200">Inglés Técnico</span>
+                    <span class="text-sky-500 font-black uppercase text-[8px]">Avanzado</span>
+                </div>
+                <p class="text-[9px] text-slate-500 italic leading-tight">Lectura especializada de papers y manuales de ingeniería.</p>
+            </div>
 
-    <footer class="footer">
-      <p>© William Pardo — wpardoorrego@gmail.com</p>
-    </footer>
-  </div>
+            <div>
+                <h2 class="section-header">Investigación I+D</h2>
+                <ul class="text-[10px] text-slate-400 space-y-2">
+                    <li>• Interfaces BCI</li>
+                    <li>• Robótica Blanda</li>
+                    <li>• Tecnologías de Rehabilitación</li>
+                    <li>• Exosqueletos</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-body">
+            <header class="mb-8">
+                <h1 class="text-4xl font-extrabold tracking-tight text-white mb-1 uppercase">William <span class="text-sky-500">Pardo Orrego</span></h1>
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Licenciado en Diseño Tecnológico | Tecnologías Emergentes</p>
+            </header>
+
+            <section class="mb-8">
+                <h2 class="section-header">Perfil Profesional</h2>
+                <p class="text-[10px] leading-relaxed text-slate-300 text-justify">
+                    Licenciado en Diseño Tecnológico con perfil de ingeniería aplicada, enfocado en soluciones <span class="text-white font-bold">inclusivas y neurotecnológicas</span>. Experto en diseño <span class="text-sky-400 font-bold">HCD</span> (Human-Centered Design), con capacidades técnicas en IA y control de hardware de precisión. Especialista en electromagnetismo aplicado y mecánica automotriz, con experiencia en <span class="text-white font-bold underline decoration-sky-500 decoration-1">Gemelos Digitales</span> para simulación de sistemas de inducción magnética y mecánica industrial. Formación pedagógica en entornos reales.
+                </p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="section-header">Dominios de Competencia</h2>
+                <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+                    <div>
+                        <h3 class="text-[10px] font-bold text-slate-100 uppercase mb-1">Física & Bio-Simulación</h3>
+                        <p class="text-[9px] text-slate-500 italic">Cálculo de bobinas de mariposa (figure-of-eight) y solenoides para rTMS.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-[10px] font-bold text-slate-100 uppercase mb-1">Mecánica & Propulsión</h3>
+                        <p class="text-[9px] text-slate-500 italic">Aplicación de estática y resistencia de materiales en sistemas mecánicos complejos.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-[10px] font-bold text-slate-100 uppercase mb-1">Digital Twins & Fab</h3>
+                        <p class="text-[9px] text-slate-500 italic">Prototipado en SolidWorks/Unity. Operación CNC, Torno y FDM/SLA.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-[10px] font-bold text-slate-100 uppercase mb-1">Diseño Inclusivo & IA</h3>
+                        <p class="text-[9px] text-slate-500 italic">Estrategias DUA. Redes neuronales para sistemas de sustitución sensorial.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="section-header">Proyectos Destacados R&D</h2>
+                <div class="space-y-4">
+                    <div class="experience-item">
+                        <h4 class="text-[11px] font-bold text-white uppercase italic">Optimización de Sistemas rTMS</h4>
+                        <p class="text-[9px] text-slate-400 mt-1">Diseño y validación de bobinas para estimulación magnética, optimizando la geometría para mejorar la eficiencia del campo inducido.</p>
+                    </div>
+                    <div class="experience-item">
+                        <h4 class="text-[11px] font-bold text-white uppercase italic">Guante Háptico (Anteproyecto)</h4>
+                        <p class="text-[9px] text-slate-400 mt-1">Autonomía espacial mediante algoritmos de retroalimentación vibrotáctil para entornos hostiles e inclusión social.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="section-header">Experiencia en Prácticas</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="text-[11px] font-bold text-white uppercase italic">Inst. Pedagógico Nacional (IPN)</h4>
+                        <p class="text-[9px] text-slate-400 leading-snug italic">Liderazgo de laboratorios de innovación. Enseñanza de robótica e implementación de hardware asistivo en el aula.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-[11px] font-bold text-white uppercase italic">Colegio Calasanz</h4>
+                        <p class="text-[9px] text-slate-400 leading-snug italic">Facilitador en diseño tecnológico. Gestión de proyectos de prototipado rápido.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-header">Formación Académica</h2>
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h4 class="text-[11px] font-bold text-white uppercase">Licenciatura en Diseño Tecnológico</h4>
+                        <p class="text-[10px] text-slate-500 italic">Universidad Pedagógica Nacional (2026)</p>
+                    </div>
+                    <span class="text-[10px] font-bold text-sky-500 uppercase tracking-tighter">BOGOTÁ</span>
+                </div>
+                <div class="bg-white/5 p-3 rounded-lg border border-white/5">
+                    <p class="text-[8px] font-black text-sky-500 uppercase tracking-tighter mb-2 italic">Créditos Posgrado Cursados</p>
+                    <div class="grid grid-cols-2 gap-4 text-[9px] text-slate-400">
+                        <p>● IA: Redes neuronales en Python.</p>
+                        <p>● Neurociencia: Interfaces BCI.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
 </body>
 </html>
