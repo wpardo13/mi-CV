@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Hoja de Vida - William Pardo Orrego -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>William Pardo Orrego | CV Profesional</title>
+    <title>William Pardo Orrego | CV Ingeniero de Diseño</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #020617;
-            --sidebar-bg: rgba(15, 23, 42, 0.8);
+            --bg-deep: #020617;
+            --sidebar: #0f172a;
             --accent: #0ea5e9;
-            --secondary: #6366f1;
+            --accent-glow: rgba(14, 165, 233, 0.4);
         }
         
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0f172a; 
+            font-family: 'Inter', sans-serif;
+            background: #020617;
             color: #f8fafc;
             margin: 0;
             padding: 0;
@@ -25,327 +26,385 @@
             print-color-adjust: exact;
         }
 
-        /* --- ANIMACIONES DE FONDO INTERACTIVO --- */
-        .bg-orb {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: 0;
-            opacity: 0.15;
-            animation: orbFloat 20s infinite alternate;
-        }
-        .orb-1 { background: var(--accent); top: -100px; left: -100px; }
-        .orb-2 { background: var(--secondary); bottom: -100px; right: -100px; animation-delay: -5s; }
-        .orb-3 { background: #ec4899; top: 40%; left: 30%; width: 300px; height: 300px; animation-delay: -10s; }
-
-        @keyframes orbFloat {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 100px) scale(1.2); }
+        /* Animaciones */
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
-        .grid-pattern {
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
-            z-index: 1;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
         .cv-document {
             width: 210mm;
-            height: 297mm;
+            min-height: 297mm;
             margin: 20px auto;
-            background: rgba(2, 6, 23, 0.9);
+            background: var(--bg-deep);
             display: flex;
             position: relative;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 1);
             overflow: hidden;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            z-index: 1;
+            animation: fadeInUp 1s ease-out forwards;
         }
 
         .sidebar {
             width: 32%;
-            background: var(--sidebar-bg);
+            background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
             padding: 40px 24px;
             border-right: 1px solid rgba(255,255,255,0.1);
             display: flex;
             flex-direction: column;
+            flex-shrink: 0;
             z-index: 10;
-            backdrop-filter: blur(5px);
+            animation: slideInLeft 0.8s ease-out forwards;
         }
 
-        .main-body {
+        .main-content {
             width: 68%;
             padding: 45px 40px;
-            z-index: 10;
+            position: relative;
+            background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
+            overflow: hidden;
         }
 
-        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
+        .main-content::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(14, 165, 233, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
 
-        .section-header {
-            font-size: 10px;
+        .main-content::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.2;
+            animation: scanline 8s linear infinite;
+            pointer-events: none;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+
+        .section-title {
+            font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
             color: var(--accent);
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            text-shadow: 0 0 10px var(--accent-glow);
         }
 
-        .section-header::after {
+        .section-title::after {
             content: "";
             flex: 1;
             height: 1px;
             background: linear-gradient(to right, var(--accent), transparent);
         }
 
-        /* Skill Tags Animados */
-        .skill-tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2px 10px;
-            border-radius: 6px;
-            font-size: 9px;
-            margin-bottom: 5px;
+        .skill-badge {
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 8.5px;
+            margin-bottom: 4px;
             display: inline-block;
+            color: #e2e8f0;
             transition: all 0.3s ease;
-            cursor: pointer;
-            backdrop-filter: blur(2px);
         }
 
-        .skill-tag:hover {
-            background: rgba(14, 165, 233, 0.2);
-            border-color: var(--accent);
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
-            color: #fff;
+        .skill-badge:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
         }
 
-        .experience-item {
-            border-left: 2px solid var(--accent);
-            padding-left: 15px;
-            margin-bottom: 18px;
-            transition: border-color 0.3s;
-        }
-        
-        .experience-item:hover {
-            border-color: var(--secondary);
+        .project-block {
+            border-left: 3px solid var(--accent);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
         }
 
-        /* Ajustes para impresión */
+        .project-block:hover {
+            background: rgba(14, 165, 233, 0.05);
+            transform: translateX(5px);
+        }
+
+        .integrated-competence-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .main-degree-highlight {
+            background: linear-gradient(90deg, rgba(14, 165, 233, 0.1) 0%, transparent 100%);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .seminar-block {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .animate-tech {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
         @media print {
-            body { background: none; padding: 0; }
+            body { background: white; }
             .cv-document { 
-                margin: 0; 
-                box-shadow: none; 
-                width: 210mm;
-                height: 297mm;
-                background: #020617 !important;
+                margin: 0; box-shadow: none; width: 210mm; height: 297mm;
+                background: white !important; border: none; animation: none;
             }
-            .bg-orb, .grid-pattern { display: none; }
-            .sidebar { background: #0f172a !important; }
+            .sidebar { background: #0f172a !important; color: white !important; animation: none; }
+            .main-content { background: white !important; color: #020617 !important; }
+            .main-content::before, .main-content::after { display: none; }
+            .text-slate-400, .text-slate-300 { color: #444 !important; }
+            .text-white { color: black !important; }
+            .skill-badge { border: 1px solid #ccc !important; color: #000 !important; }
         }
     </style>
 </head>
 <body>
 
     <div class="cv-document">
-        <!-- Capas de fondo -->
-        <div class="grid-pattern"></div>
-        <div class="bg-orb orb-1"></div>
-        <div class="bg-orb orb-2"></div>
-        <div class="bg-orb orb-3"></div>
-
-        <!-- SIDEBAR -->
+        <!-- BARRA LATERAL -->
         <aside class="sidebar">
-            <div class="mb-10">
-                <h2 class="section-header">Contacto</h2>
-                <div class="space-y-3 text-[10px] text-slate-400">
-                    <p class="hover:text-sky-400 transition-colors cursor-default flex items-center gap-2">
-                        <svg class="w-3 h-3 text-sky-500" fill="currentColor" viewBox="0 0 20 20"><path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"></path></svg>
-                        Bogotá, Colombia
-                    </p>
-                    <p class="hover:text-sky-400 transition-colors cursor-default flex items-center gap-2">
-                        <svg class="w-3 h-3 text-sky-500" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
-                        302 252 3961
-                    </p>
-                    <p class="text-sky-400 font-semibold hover:text-white transition-colors cursor-pointer flex items-center gap-2">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                        wpardoorrego@gmail.com
-                    </p>
+            <div class="mb-10 text-center">
+                <div class="relative w-28 h-28 mx-auto mb-6 p-1 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-full shadow-lg overflow-hidden border-2 border-sky-400/30 transition-transform hover:scale-105 duration-500">
+                    <div class="w-full h-full rounded-full overflow-hidden bg-slate-800">
+                        <img src="foto kooles prof.jpg" 
+                             alt="William Pardo Orrego" 
+                             class="w-full h-full object-cover"
+                             onerror="this.src='https://ui-avatars.com/api/?name=William+Pardo&background=0f172a&color=0ea5e9&size=200'">
+                    </div>
+                </div>
+                <h2 class="section-title justify-center text-sky-400">Información</h2>
+                <div class="space-y-2 text-[10px] text-slate-400">
+                    <p>📍 Bogotá, Colombia</p>
+                    <p>📞 302 252 3961</p>
+                    <p class="text-sky-400 font-semibold underline italic">wpardoorrego@gmail.com</p>
                 </div>
             </div>
 
-            <div class="mb-10">
-                <h2 class="section-header">Stack Tecnológico</h2>
-                <div class="space-y-6">
+            <div class="mb-8">
+                <h2 class="section-title">Stack Tecnológico</h2>
+                <div class="space-y-4">
                     <div>
-                        <h3 class="text-[9px] text-slate-500 font-bold mb-2 uppercase tracking-tighter">Ingeniería & 3D</h3>
+                        <h3 class="text-[9px] text-slate-500 font-bold mb-1.5 uppercase">Software & 3D</h3>
                         <div class="flex flex-wrap gap-1">
-                            <span class="skill-tag">SolidWorks</span>
-                            <span class="skill-tag">Unity</span>
-                            <span class="skill-tag">AutoCAD</span>
-                            <span class="skill-tag">Rhinoceros</span>
-                            <span class="skill-tag">Blender</span>
+                            <span class="skill-badge">SolidWorks</span>
+                            <span class="skill-badge">Unity 3D</span>
+                            <span class="skill-badge">AutoCAD</span>
+                            <span class="skill-badge">Rhinoceros</span>
+                            <span class="skill-badge">Blender</span>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-[9px] text-slate-500 font-bold mb-2 uppercase tracking-tighter">IA & Software</h3>
+                        <h3 class="text-[9px] text-slate-500 font-bold mb-1.5 uppercase">Programación</h3>
                         <div class="flex flex-wrap gap-1">
-                            <span class="skill-tag text-sky-300">Python (IA/Física)</span>
-                            <span class="skill-tag">C#</span>
-                            <span class="skill-tag">Análisis de Datos</span>
+                            <span class="skill-badge">Python (IA)</span>
+                            <span class="skill-badge text-sky-300 font-bold">C++</span>
+                            <span class="skill-badge text-sky-400 font-bold">HTML / MySQL</span>
+                            <span class="skill-badge">C# / IoT Servers</span>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-[9px] text-slate-500 font-bold mb-2 uppercase tracking-tighter">Hardware Industrial</h3>
+                        <h3 class="text-[9px] text-slate-500 font-bold mb-1.5 uppercase">Hardware & Fab</h3>
                         <div class="flex flex-wrap gap-1">
-                            <span class="skill-tag text-indigo-300">ESP32 / Arduino</span>
-                            <span class="skill-tag">Raspberry Pi</span>
-                            <span class="skill-tag">Herkulex DRS-0101</span>
+                            <span class="skill-badge text-sky-400 font-bold">Herkulex DRS-0101</span>
+                            <span class="skill-badge">ESP32 / Arduino</span>
+                            <span class="skill-badge">Raspberry Pi</span>
+                            <span class="skill-badge text-sky-400 font-bold">Protocolos 5G</span>
+                            <span class="skill-badge">CNC / Torno / Soldadura</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="mb-10">
-                <h2 class="section-header">Idiomas</h2>
-                <div class="flex justify-between items-center text-[10px] mb-1">
-                    <span class="font-bold text-slate-200">Inglés Técnico</span>
-                    <span class="text-sky-500 font-black uppercase text-[8px]">85%</span>
+            <div class="mb-8">
+                <h2 class="section-title">Idiomas</h2>
+                <div class="text-[10px] space-y-3 bg-white/5 p-4 rounded-xl border border-white/5 shadow-inner">
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-200 font-bold">Español</span>
+                        <span class="text-sky-500 font-extrabold text-[8px] uppercase tracking-widest">Nativo</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-200 font-bold">Inglés</span>
+                        <span class="text-slate-400 font-extrabold text-[8px] uppercase tracking-widest">Intermedio</span>
+                    </div>
+                    <p class="text-[8px] text-slate-500 italic leading-snug">Lectura técnica y comprensión de artículos científicos aplicados.</p>
                 </div>
-                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1 border border-white/5">
-                    <div class="bg-gradient-to-r from-sky-600 to-indigo-500 h-full w-[85%] shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
-                </div>
-                <p class="text-[8px] text-slate-500 italic mt-3 leading-tight">Lectura avanzada de manuales y papers científicos de ingeniería física.</p>
             </div>
 
-            <div class="mt-auto">
-                <h2 class="section-header">Investigación I+D</h2>
-                <ul class="text-[10px] text-slate-400 space-y-2">
-                    <li class="flex items-center gap-2 group cursor-default">
-                        <span class="w-1.5 h-1.5 bg-sky-500 rounded-full group-hover:bg-white transition-colors"></span> 
-                        Interfaces Cerebro-Computador
-                    </li>
-                    <li class="flex items-center gap-2 group cursor-default">
-                        <span class="w-1.5 h-1.5 bg-indigo-500 rounded-full group-hover:bg-white transition-colors"></span> 
-                        Robótica Blanda
-                    </li>
-                    <li class="flex items-center gap-2 group cursor-default">
-                        <span class="w-1.5 h-1.5 bg-purple-500 rounded-full group-hover:bg-white transition-colors"></span> 
-                        Tecnologías de Rehabilitación
-                    </li>
+            <div class="mb-8">
+                <h2 class="section-title">Experticia</h2>
+                <ul class="text-[9px] text-slate-400 space-y-2">
+                    <li class="flex items-center gap-2"><div class="w-1 h-1 bg-sky-500 rounded-full"></div> Ingeniería Física y Bio-Simulación</li>
+                    <li class="flex items-center gap-2"><div class="w-1 h-1 bg-sky-500 rounded-full"></div> Mecánica Automotriz e Industrial</li>
+                    <li class="flex items-center gap-2"><div class="w-1 h-1 bg-sky-500 rounded-full"></div> Biomecánica y Ergonomía Activa</li>
+                    <li class="flex items-center gap-2"><div class="w-1 h-1 bg-sky-500 rounded-full"></div> Gemelos Digitales (Digital Twins)</li>
+                    <li class="flex items-center gap-2"><div class="w-1 h-1 bg-sky-500 rounded-full"></div> Inteligencia de Hardware IoT/IA</li>
+                    <li class="flex items-center gap-2"><div class="w-1 h-1 bg-sky-500 rounded-full"></div> Pedagogía de la Innovación</li>
+                    <li class="flex items-center gap-2"><div class="w-1 h-1 bg-sky-500 rounded-full"></div> Diseño Inclusivo y DUA</li>
                 </ul>
             </div>
         </aside>
 
         <!-- CONTENIDO PRINCIPAL -->
-        <main class="main-body">
-            <header class="mb-8">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h1 class="text-4xl font-extrabold tracking-tight text-white mb-1 uppercase">William <span class="text-sky-500">Pardo Orrego</span></h1>
-                        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Licenciado en Diseño Tecnológico | Especialista en Tecnologías Emergentes</p>
-                    </div>
-                    <div class="hidden md:block">
-                        <div class="w-12 h-12 rounded-lg border border-sky-500/30 flex items-center justify-center bg-sky-500/5">
-                            <svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-24 h-1.5 bg-gradient-to-r from-sky-500 to-indigo-600 rounded-full"></div>
+        <main class="main-content">
+            <header class="mb-8 relative animate-tech" style="animation-delay: 0.1s;">
+                <div class="absolute -left-10 top-1/2 -translate-y-1/2 w-1 h-16 bg-gradient-to-b from-sky-500 to-indigo-600 rounded-full"></div>
+                <h1 class="text-5xl font-black text-white tracking-tighter uppercase leading-none mb-2">
+                    William <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-500">Pardo Orrego</span>
+                </h1>
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-[0.3em] italic">
+                    Licenciado en Diseño Tecnológico | Investigador R&D
+                </p>
+                <p class="text-[9px] text-sky-600 font-bold uppercase tracking-widest mt-1">Profundización en Tecnologías Emergentes y Fabricación Digital</p>
             </header>
 
-            <section class="mb-8">
-                <h2 class="section-header">Perfil Profesional</h2>
-                <p class="text-[10px] leading-relaxed text-slate-300 text-justify bg-white/5 p-4 rounded-xl border border-white/5">
-                    Licenciado en Diseño Tecnológico con perfil de ingeniería aplicada, enfocado en soluciones <span class="text-white font-bold">inclusivas y neurotecnológicas</span>. Experto en diseño <span class="text-sky-400 font-bold">HCD</span>, con capacidades en IA y control de hardware de precisión. Especialista en electromagnetismo aplicado y mecánica automotriz, con experiencia en <span class="text-white font-bold underline decoration-sky-500">Gemelos Digitales</span> para simulación de sistemas de inducción magnética y mecánica industrial. Formación pedagógica en entornos reales de fabricación digital.
+            <section class="mb-8 animate-tech" style="animation-delay: 0.2s;">
+                <h2 class="section-title">Perfil Profesional</h2>
+                <p class="text-[10.5px] leading-relaxed text-slate-200 text-justify bg-slate-900/40 p-4 rounded-lg border border-white/5">
+                    Licenciado en Diseño Tecnológico con perfil de ingeniería aplicada, enfocado en el desarrollo de soluciones inclusivas y neurotecnológicas. Experto en el ciclo de diseño <strong class="text-sky-400 font-bold italic">HCD (Human-Centered Design)</strong>, con capacidades técnicas en Inteligencia Artificial, conectividad 5G/IoT y control de hardware de precisión. Sólidos conocimientos en electromagnetismo aplicado y mecánica automotriz, con experiencia en el desarrollo de <strong class="text-sky-400 font-bold italic">Gemelos Digitales</strong> para la simulación de sistemas de inducción magnética y mecánica industrial. Formación pedagógica desarrollada en entornos de práctica real, fomentando la creatividad mediante la fabricación digital y el pensamiento crítico.
                 </p>
             </section>
 
-            <section class="mb-8">
-                <h2 class="section-header">Dominios de Competencia</h2>
-                <div class="grid grid-cols-2 gap-x-6 gap-y-4">
-                    <div class="hover:bg-white/5 p-3 rounded-lg transition-colors border border-transparent hover:border-white/5">
-                        <h3 class="text-[10px] font-bold text-slate-100 uppercase mb-1 flex items-center gap-2">
-                            <span class="w-1 h-1 bg-sky-500 rounded-full"></span> Física & Bio-Simulación
-                        </h3>
-                        <p class="text-[9px] text-slate-500 italic">Cálculo de bobinas de mariposa (figure-of-eight) y solenoides para rTMS. Modelado de flujo magnético.</p>
-                    </div>
-                    <div class="hover:bg-white/5 p-3 rounded-lg transition-colors border border-transparent hover:border-white/5">
-                        <h3 class="text-[10px] font-bold text-slate-100 uppercase mb-1 flex items-center gap-2">
-                            <span class="w-1 h-1 bg-indigo-500 rounded-full"></span> Mecánica & Propulsión
-                        </h3>
-                        <p class="text-[9px] text-slate-500 italic">Diagnóstico y resistencia de materiales en sistemas complejos. Aplicación de dinámica industrial.</p>
-                    </div>
-                    <div class="hover:bg-white/5 p-3 rounded-lg transition-colors border border-transparent hover:border-white/5">
-                        <h3 class="text-[10px] font-bold text-slate-100 uppercase mb-1 flex items-center gap-2">
-                            <span class="w-1 h-1 bg-purple-500 rounded-full"></span> Digital Twins & Fab
-                        </h3>
-                        <p class="text-[9px] text-slate-500 italic">Prototipado avanzado en SolidWorks/Unity. Operación de maquinaria CNC, Torno y FDM/SLA.</p>
-                    </div>
-                    <div class="hover:bg-white/5 p-3 rounded-lg transition-colors border border-transparent hover:border-white/5">
-                        <h3 class="text-[10px] font-bold text-slate-100 uppercase mb-1 flex items-center gap-2">
-                            <span class="w-1 h-1 bg-pink-500 rounded-full"></span> Diseño Inclusivo & IA
-                        </h3>
-                        <p class="text-[9px] text-slate-500 italic">Estrategias DUA. Redes neuronales aplicadas a sistemas de sustitución sensorial para autonomía.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="mb-8">
-                <h2 class="section-header">Proyectos Destacados R&D</h2>
-                <div class="space-y-4">
-                    <div class="experience-item group">
-                        <h4 class="text-[11px] font-bold text-white uppercase italic group-hover:text-sky-400 transition-colors">Optimización de Sistemas rTMS</h4>
-                        <p class="text-[9px] text-slate-400 mt-1">Diseño y validación de bobinas para estimulación magnética, optimizando la geometría para mejorar la eficiencia del campo inducido mediante análisis multifísico.</p>
-                    </div>
-                    <div class="experience-item group">
-                        <h4 class="text-[11px] font-bold text-white uppercase italic group-hover:text-indigo-400 transition-colors">Guante Háptico (Anteproyecto de Grado)</h4>
-                        <p class="text-[9px] text-slate-400 mt-1">Desarrollo de hardware para autonomía espacial mediante algoritmos de retroalimentación vibrotáctil, integrando sensores y motores de precisión.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="mb-8">
-                <h2 class="section-header">Experiencia en Prácticas</h2>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h4 class="text-[11px] font-bold text-white uppercase italic">Inst. Pedagógico Nacional (IPN)</h4>
-                            <p class="text-[9px] text-slate-400 leading-snug mt-1">Liderazgo de laboratorios de innovación. Enseñanza de robótica e implementación de hardware asistivo en el aula para fomentar la inclusión tecnológica.</p>
+            <!-- FORMACIÓN ACADÉMICA Y POSGRADO -->
+            <section class="mb-8 animate-tech" style="animation-delay: 0.3s;">
+                <h2 class="section-title">Formación Académica & Posgrado</h2>
+                <div class="space-y-6">
+                    <!-- CARRERA PRINCIPAL RESALTADA -->
+                    <div class="main-degree-highlight">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="text-[15px] font-black text-white uppercase tracking-tight">Licenciatura en Diseño Tecnológico</h4>
+                            <p class="text-[11px] text-sky-500 font-black italic">Grado Abril 2026</p>
                         </div>
+                        <p class="text-[11px] text-slate-300 font-medium">Universidad Pedagógica Nacional</p>
+                        <p class="text-[9.5px] text-slate-500 mt-1 italic">Énfasis en diseño industrial, física aplicada y sistemas tecnológicos complejos.</p>
                     </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h4 class="text-[11px] font-bold text-white uppercase italic">Colegio Calasanz</h4>
-                            <p class="text-[9px] text-slate-400 leading-snug mt-1 text-justify">Facilitador en diseño tecnológico y graficadores especiales. Gestión de proyectos de prototipado rápido con enfoque en pensamiento crítico.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="seminar-block">
+                            <h4 class="text-[10px] font-black text-sky-400 uppercase mb-2 tracking-widest italic underline decoration-sky-500 underline-offset-4">Seminarios de Maestría</h4>
+                            <div class="space-y-3 text-[9.5px] text-slate-300">
+                                <p class="leading-relaxed"><strong class="text-white block mb-1 uppercase text-[8px] italic">Inteligencia Artificial</strong> Redes neuronales y algoritmos de optimización avanzada en Python cursados a nivel Maestría.</p>
+                                <p class="leading-relaxed"><strong class="text-white block mb-1 uppercase text-[8px] italic">Neurociencia Cognitiva</strong> Neuroanatomía funcional aplicada al diseño de interfaces cerebro-computador (BCI).</p>
+                            </div>
+                        </div>
+
+                        <div class="seminar-block">
+                            <h4 class="text-[10px] font-black text-sky-400 uppercase mb-2 tracking-widest italic">Cursos de Especialidad</h4>
+                            <div class="space-y-2">
+                                <h4 class="text-[10px] font-bold text-white uppercase tracking-wide italic">
+                                    Mantenimiento Mecánico de Automóviles
+                                </h4>
+                                <p class="text-[9.5px] text-slate-400 leading-relaxed text-justify">Diagnóstico de sistemas complejos, análisis de mecánica de fluidos y mantenimiento de propulsión industrial.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section>
-                <h2 class="section-header">Formación Académica</h2>
-                <div class="flex justify-between items-start mb-4">
-                    <div>
-                        <h4 class="text-[11px] font-bold text-white uppercase">Licenciatura en Diseño Tecnológico</h4>
-                        <p class="text-[10px] text-slate-500 italic">Universidad Pedagógica Nacional (Egresado 2026)</p>
+            <!-- EXPERIENCIA EN PRÁCTICAS -->
+            <section class="mb-8 animate-tech" style="animation-delay: 0.4s;">
+                <h2 class="section-title">Experiencia en Prácticas</h2>
+                <div class="space-y-4">
+                    <div class="project-block">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <h4 class="text-[11px] font-bold text-sky-400 uppercase italic">Instituto Pedagógico Nacional (IPN)</h4>
+                            <span class="text-[9px] text-slate-500 font-bold uppercase italic">Docente de Práctica</span>
+                        </div>
+                        <p class="text-[9.5px] text-slate-400 leading-relaxed text-justify">
+                            Liderazgo de laboratorios de innovación y creatividad. Enseñanza de robótica e informática aplicada. Implementación de hardware asistivo e inclusivo en el aula bajo estrategias <strong class="text-white font-bold italic">DUA</strong>.
+                        </p>
                     </div>
-                    <span class="text-[10px] font-bold text-sky-500 border border-sky-500/30 px-2 py-1 rounded">BOGOTÁ</span>
+                    <div class="project-block">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <h4 class="text-[11px] font-bold text-sky-400 uppercase italic">Colegio Calasanz</h4>
+                            <span class="text-[9px] text-slate-500 font-bold uppercase italic">Docente de Práctica</span>
+                        </div>
+                        <p class="text-[9.5px] text-slate-400 leading-relaxed text-justify">
+                            Facilitador en procesos de diseño tecnológico y graficadores especiales. Gestión de proyectos de prototipado rápido con estudiantes de secundaria.
+                        </p>
+                    </div>
                 </div>
-                <div class="bg-gradient-to-br from-slate-900 to-black p-4 rounded-xl border border-white/10 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-sky-500/5 blur-2xl"></div>
-                    <p class="text-[8px] font-black text-sky-500 uppercase tracking-widest mb-3 italic">Créditos Posgrado Cursados</p>
-                    <div class="grid grid-cols-2 gap-4 text-[9px] text-slate-400">
-                        <p class="flex items-center gap-2"><span class="w-1 h-1 bg-white rounded-full"></span> IA: Redes neuronales en Python.</p>
-                        <p class="flex items-center gap-2"><span class="w-1 h-1 bg-white rounded-full"></span> Neurociencia: Interfaces BCI.</p>
+            </section>
+
+            <!-- PROYECTOS -->
+            <section class="mb-8 animate-tech" style="animation-delay: 0.5s;">
+                <h2 class="section-title">Proyectos Destacados & R&D</h2>
+                <div class="space-y-5">
+                    <div class="project-block">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="text-[11px] font-bold text-sky-400 uppercase italic">Optimización de Sistemas rTMS</h4>
+                            <span class="text-[9px] text-slate-500 font-bold uppercase italic">Electromagnetismo Aplicado</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 leading-relaxed text-justify">
+                            Diseño y validación de bobinas de mariposa (*figure-of-eight*) para estimulación magnética, optimizando la focalidad cortical (campos de <strong class="text-white">1.2-1.5T</strong>) mediante simulación de densidad de flujo magnético.
+                        </p>
+                    </div>
+                    <div class="project-block">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="text-[11px] font-bold text-sky-400 uppercase italic">Guante Háptico & Digital Twins</h4>
+                            <span class="text-[9px] text-slate-500 font-bold uppercase italic">Anteproyecto de Grado</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 leading-relaxed text-justify">
+                            Dispositivo de inclusión enfocado en la autonomía espacial mediante algoritmos de retroalimentación vibrotáctil. Desarrollo de réplicas virtuales en <strong class="text-white italic">Unity</strong> para simulación de entornos hostiles.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPETENCIAS -->
+            <section class="animate-tech" style="animation-delay: 0.6s;">
+                <h2 class="section-title">Competencias Técnicas Integradas</h2>
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div class="integrated-competence-card border-l-2 border-l-sky-500">
+                        <h4 class="text-[10px] font-bold text-slate-100 uppercase mb-2 italic font-extrabold">Ingeniería Física y Bio-Simulación</h4>
+                        <p class="text-[9px] text-slate-400 leading-snug">Cálculo y modelado multifísico de bobinas rTMS. Optimización térmica y focalidad cortical para dispositivos médicos.</p>
+                    </div>
+                    <div class="integrated-competence-card border-l-2 border-l-sky-500">
+                        <h4 class="text-[10px] font-bold text-slate-100 uppercase mb-2 italic font-extrabold">Mecánica e Ingeniería Industrial</h4>
+                        <p class="text-[9px] text-slate-400 leading-snug">Diagnóstico de sistemas complejos. Aplicación de estática, dinámica y resistencia de materiales en sistemas de propulsión.</p>
+                    </div>
+                    <div class="integrated-competence-card border-l-2 border-l-sky-500">
+                        <h4 class="text-[10px] font-bold text-slate-100 uppercase mb-2 italic font-extrabold">Digital Twins y Fabricación</h4>
+                        <p class="text-[9px] text-slate-400 leading-snug">Prototipado virtual en Unity/SolidWorks. Dominio de CNC, Torno, Fresadora y Fabricación Aditiva avanzada.</p>
+                    </div>
+                    <div class="integrated-competence-card border-l-2 border-l-sky-500">
+                        <h4 class="text-[10px] font-bold text-slate-100 uppercase mb-2 italic font-extrabold">Biomecánica y Diseño Inclusivo</h4>
+                        <p class="text-[9px] text-slate-400 leading-snug">Hardware basado en neuroanatomía funcional y cinemática corporal bajo estrategias DUA para sustitución sensorial.</p>
                     </div>
                 </div>
             </section>
